@@ -7,9 +7,31 @@
 //
 
 #include <iostream>
+#include "Stack.hpp"
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+    
+    Stack s = Stack();
+    
+    /*s.Add(1);
+    s.Add(2);
+    s.Add(666);
+    s.Add(6664);
+    s.Add(6663);
+    s.Add(6662);
+    
+    s.Show();
+    std::cout << "\t";
+    std::cout << s.Size() << std::endl;
+    
+    s.Delete(2);
+    s.Delete(6663);
+
+    s.Show();
+    std::cout << "\t\t";
+    std::cout << s.Size() << std::endl;*/
+    
+    s.Sort();
+    
     return 0;
 }

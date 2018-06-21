@@ -8,6 +8,7 @@
 
 #include "Stack.hpp"
 #include <iostream>
+#include <array>
 
 using namespace std;
 
@@ -106,4 +107,77 @@ bool Stack::Delete(int elementToDelete)
 int Stack::Size()
 {
     return numberOfElements;
+}
+
+void Stack::Sort()
+{
+    int arr[8] = { 2, 1, 4, -10, 6, 4, 7, -11 };
+    
+    int *newArray = new int[8];
+    
+    newArray = arr;
+    
+    int middleOfStack = 8 / 2;
+    if (8 % 2 == 1)
+    {
+        middleOfStack++;
+    }
+    
+    int *tempArray = new int[8];
+    int step = 1;
+    int stage;
+    
+    while (step < 8)
+    {
+        stage = step;
+        int firstWayIndex = 0;
+        int secondWayIndex = middleOfStack;
+        int newElementIndex = 0;
+        
+        while (stage <= middleOfStack)
+        {
+            while (firstWayIndex < stage && secondWayIndex < 8 && secondWayIndex < (middleOfStack + stage))
+            {
+                if (newArray[firstWayIndex] < newArray[secondWayIndex])
+                {
+                    tempArray[newElementIndex] = newArray[firstWayIndex];
+                    firstWayIndex++;
+                    newElementIndex++;
+                }
+                else
+                {
+                    tempArray[newElementIndex] = newArray[secondWayIndex];
+                    secondWayIndex++;
+                    newElementIndex++;
+                }
+            }
+            
+            while (firstWayIndex < stage)
+            {
+                tempArray[newElementIndex] = newArray[firstWayIndex];
+                newElementIndex++;
+                firstWayIndex++;
+            }
+            
+            while (secondWayIndex < (middleOfStack + stage) && secondWayIndex < 8)
+            {
+                tempArray[newElementIndex] = newArray[secondWayIndex];
+                newElementIndex++;
+                secondWayIndex++;
+            }
+            
+            stage = stage + step;
+        }
+        
+        step = step * 2;
+
+        for (int i = 0; i < 8; i++)
+        {
+            newArray[i] = tempArray[i];
+        }
+    }
+    for (int i = 0; i < 8; i++)
+    {
+        std::cout << newArray[i] << " ";
+    }
 }

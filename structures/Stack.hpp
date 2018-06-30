@@ -10,6 +10,7 @@
 #define Stack_hpp
 
 #include <stdio.h>
+#include <math.h>
 
 template<class T>
 class Stack
@@ -31,13 +32,15 @@ class Stack
         Stack();
         ~Stack();
     
-        void Add(const T& newElement);
-
+        void Push(const T& newElement);
+        T Pop();
         bool Delete(const T& elementToDelete);
+        bool IsEmpty();
+        Stack<T> Reverse(Stack stack);
         void Show();
         void Sort();
-        int Size();
         void Clear();
+        int Size();
 };
 
 /*
@@ -60,10 +63,53 @@ Stack<T>::~Stack()
 }
 
 /*!
+ \brief Проверка стека на пустоту
+ */
+
+template <class T>
+bool Stack<T>::IsEmpty()
+{
+    if (myStack->head == NULL)
+        return true;
+    
+    return false;
+}
+
+template <class T>
+T Stack<T>::Pop()
+{
+    Element<T> *temp = myStack->head;
+    T returnedE = temp->e;
+    
+    if (temp != NULL)
+    {
+        myStack->head = temp->next;
+        delete temp;
+        numberOfElements--;
+    }
+    
+    return returnedE;
+}
+
+/*
+ brief Возвращает перевернутый стек
+ */
+
+template<class T>
+Stack<T> Stack<T>::Reverse(Stack stack)
+{
+    Stack reversedStack = Stack();
+    while (!stack.IsEmpty())
+        reversedStack.Push(stack.Pop());
+        
+    return reversedStack;
+}
+
+/*!
  \brief Добавление нового элемента
  */
 template<class T>
-void Stack<T>::Add(const T& newElement)
+void Stack<T>::Push(const T& newElement)
 {
     Element<T> *temp = new Element<T>;
     temp->e = newElement;
@@ -84,6 +130,7 @@ void Stack<T>::Show()
         std::cout << temp->e << " ";
         temp = temp->next;
     }
+    std::cout << std::endl;
 }
 
 /*!
@@ -145,75 +192,51 @@ int Stack<T>::Size()
 template<class T>
 void Stack<T>::Sort()
 {
-    int arr[8] = { 2, 1, 4, -10, 6, 4, 7, -11 };
     
-    int *newArray = new int[8];
-    
-    newArray = arr;
-    
-    int middleOfStack = 8 / 2;
-    if (8 % 2 == 1)
-    {
-        middleOfStack++;
-    }
-    
-    int *tempArray = new int[8];
-    int step = 1;
-    int stage;
-    
-    while (step < 8)
-    {
-        stage = step;
-        int firstWayIndex = 0;
-        int secondWayIndex = middleOfStack;
-        int newElementIndex = 0;
-        
-        while (stage <= middleOfStack)
-        {
-            while (firstWayIndex < stage && secondWayIndex < 8 && secondWayIndex < (middleOfStack + stage))
-            {
-                if (newArray[firstWayIndex] < newArray[secondWayIndex])
-                {
-                    tempArray[newElementIndex] = newArray[firstWayIndex];
-                    firstWayIndex++;
-                    newElementIndex++;
-                }
-                else
-                {
-                    tempArray[newElementIndex] = newArray[secondWayIndex];
-                    secondWayIndex++;
-                    newElementIndex++;
-                }
-            }
-            
-            while (firstWayIndex < stage)
-            {
-                tempArray[newElementIndex] = newArray[firstWayIndex];
-                newElementIndex++;
-                firstWayIndex++;
-            }
-            
-            while (secondWayIndex < (middleOfStack + stage) && secondWayIndex < 8)
-            {
-                tempArray[newElementIndex] = newArray[secondWayIndex];
-                newElementIndex++;
-                secondWayIndex++;
-            }
-            
-            stage = stage + step;
-        }
-        
-        step = step * 2;
-        
-        for (int i = 0; i < 8; i++)
-        {
-            newArray[i] = tempArray[i];
-        }
-    }
-    for (int i = 0; i < 8; i++)
-    {
-        std::cout << newArray[i] << " ";
-    }
+//    // данный алгоритм был лютейшее говно
+//
+//
+//        if (input.isEmpty()) {
+//            return;
+//        }
+//
+//        Stack stackLeft = new Stack();
+//        Stack stackRight = new Stack();
+//
+//        // split
+//        while (!input.isEmpty()) {
+//            stackLeft.push(input.pop());
+//            if (!input.isEmpty()) {
+//                stackRight.push(input.pop());
+//            }
+//        }
+//
+//        // recurse
+//        if (!stackLeft.isEmpty() && !stackRight.isEmpty()) {
+//            mergesortStack(stackLeft);
+//            mergesortStack(stackRight);
+//        }
+//
+//        // merge
+//        Stack tmpStack = new Stack();
+//        while (!stackLeft.isEmpty() || !stackRight.isEmpty()) {
+//            if (stackLeft.isEmpty()) {
+//                tmpStack.push(stackRight.pop());
+//            } else if (stackRight.isEmpty()) {
+//                tmpStack.push(stackLeft.pop());
+//                // set an appropriate compare method
+//            } else if (stackLeft.peek().compareTo(stackRight.peek()) >= 0) {
+//                tmpStack.push(stackLeft.pop());
+//            } else {
+//                tmpStack.push(stackRight.pop());
+//            }
+//        }
+//
+//        // reverse stack
+//        while (!tmpStack.isEmpty()) {
+//            input.push(tmpStack.pop());
+//        }
+//
 }
 
 #endif /* Stack_hpp */

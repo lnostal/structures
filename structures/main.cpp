@@ -11,27 +11,22 @@
 
 int main(int argc, const char * argv[]) {
     
-    Stack s = Stack();
-    
-    /*s.Add(1);
-    s.Add(2);
-    s.Add(666);
-    s.Add(6664);
-    s.Add(6663);
-    s.Add(6662);
-    
+    Stack<int> s = Stack<int>();
+    std::cout << "Пусто? " << s.IsEmpty() << std::endl;
+    s.Push(1);
+    s.Push(2);
+    s.Push(666);
+    std::cout << s.Pop() << std::endl;
+    std::cout << "Пусто? " << s.IsEmpty() << std::endl;
     s.Show();
     std::cout << "\t";
     std::cout << s.Size() << std::endl;
-    
     s.Delete(2);
-    s.Delete(6663);
-
     s.Show();
-    std::cout << "\t\t";
-    std::cout << s.Size() << std::endl;*/
+    std::cout << "Пусто? " << s.IsEmpty() << std::endl;
     
-    s.Sort();
+    s.Clear();
+    std::cout << "Пусто? " << s.IsEmpty() << std::endl;
     
     return 0;
 }

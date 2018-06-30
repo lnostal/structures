@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0DBC738320DB1C3600AA7F0C /* Stack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DBC738120DB1C3600AA7F0C /* Stack.cpp */; };
 		0DF6248D20DAFE9D006B8378 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DF6248C20DAFE9D006B8378 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -25,7 +24,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0DBC738120DB1C3600AA7F0C /* Stack.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Stack.cpp; sourceTree = "<group>"; };
 		0DBC738220DB1C3600AA7F0C /* Stack.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Stack.hpp; sourceTree = "<group>"; };
 		0DF6248920DAFE9D006B8378 /* structures */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = structures; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DF6248C20DAFE9D006B8378 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -62,7 +60,6 @@
 			isa = PBXGroup;
 			children = (
 				0DF6248C20DAFE9D006B8378 /* main.cpp */,
-				0DBC738120DB1C3600AA7F0C /* Stack.cpp */,
 				0DBC738220DB1C3600AA7F0C /* Stack.hpp */,
 			);
 			path = structures;
@@ -124,7 +121,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0DBC738320DB1C3600AA7F0C /* Stack.cpp in Sources */,
 				0DF6248D20DAFE9D006B8378 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,7 +134,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -196,7 +192,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;

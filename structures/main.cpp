@@ -12,21 +12,34 @@
 int main(int argc, const char * argv[]) {
     
     Stack<int> s = Stack<int>();
-    std::cout << "Пусто? " << s.IsEmpty() << std::endl;
+//    std::cout << "Пусто? " << s.IsEmpty() << std::endl;
+//    s.Push(1);
+//    s.Push(2);
+//    s.Push(666);
+//    std::cout << s.Pop() << std::endl;
+//    std::cout << "Пусто? " << s.IsEmpty() << std::endl;
+//    s.Show();
+//    std::cout << "\t";
+//    std::cout << s.Size() << std::endl;
+//    //s.Delete(2);
+//    s.Show();
+//    std::cout << "Пусто? " << s.IsEmpty() << std::endl;
+//
+//    s.Clear();
+//    std::cout << "Пусто? " << s.IsEmpty() << std::endl;
+    
     s.Push(1);
     s.Push(2);
-    s.Push(666);
-    std::cout << s.Pop() << std::endl;
-    std::cout << "Пусто? " << s.IsEmpty() << std::endl;
+    s.Push(3);
+    s.Push(4);
+    s.Push(5);
     s.Show();
-    std::cout << "\t";
-    std::cout << s.Size() << std::endl;
-    s.Delete(2);
-    s.Show();
-    std::cout << "Пусто? " << s.IsEmpty() << std::endl;
+    s.Sort();
+    //s.Pop();
+    //s.Pop();
+    //s.Show();
     
-    s.Clear();
-    std::cout << "Пусто? " << s.IsEmpty() << std::endl;
+
     
     return 0;
 }

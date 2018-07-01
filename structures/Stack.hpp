@@ -34,9 +34,7 @@ class Stack
     
         void Push(const T& newElement);
         T Pop();
-        bool Delete(const T& elementToDelete);
         bool IsEmpty();
-        Stack<T> Reverse(Stack stack);
         void Show();
         void Sort();
         void Clear();
@@ -91,20 +89,6 @@ T Stack<T>::Pop()
     return returnedE;
 }
 
-/*
- brief Возвращает перевернутый стек
- */
-
-template<class T>
-Stack<T> Stack<T>::Reverse(Stack stack)
-{
-    Stack reversedStack = Stack();
-    while (!stack.IsEmpty())
-        reversedStack.Push(stack.Pop());
-        
-    return reversedStack;
-}
-
 /*!
  \brief Добавление нового элемента
  */
@@ -149,38 +133,6 @@ void Stack<T>::Clear()
 }
 
 /*!
- \brief Удаление элемента из стека
- 
- Удаление происходит засчет поочередного сравнивания входного значения с элементами стека.
- В случае, если будет обнаружено совпадение, элемент удалится, и метод вернет true. Иначе
- вполне закономерно вернется false.
- 
- \param elementToDelete Удаляемый элемент
- \return bool Результат работы метода
- */
-template<class T>
-bool Stack<T>::Delete(const T& elementToDelete)
-{
-    Element<T> *temp = myStack->head;
-    Element<T> *previous = temp;
-    
-    while (temp != NULL)
-    {
-        if (temp->e == elementToDelete)
-        {
-            previous->next = temp->next;
-            delete temp;
-            numberOfElements--;
-            
-            return true;
-        }
-        previous = temp;
-        temp = temp->next;
-    }
-    return false;
-}
-
-/*!
  \brief Возвращает количество элементов в стеке
  */
 template<class T>
@@ -192,51 +144,19 @@ int Stack<T>::Size()
 template<class T>
 void Stack<T>::Sort()
 {
+    int sizeOfArray = Size();
+    T mass[sizeOfArray];
     
-//    // данный алгоритм был лютейшее говно
-//
-//
-//        if (input.isEmpty()) {
-//            return;
-//        }
-//
-//        Stack stackLeft = new Stack();
-//        Stack stackRight = new Stack();
-//
-//        // split
-//        while (!input.isEmpty()) {
-//            stackLeft.push(input.pop());
-//            if (!input.isEmpty()) {
-//                stackRight.push(input.pop());
-//            }
-//        }
-//
-//        // recurse
-//        if (!stackLeft.isEmpty() && !stackRight.isEmpty()) {
-//            mergesortStack(stackLeft);
-//            mergesortStack(stackRight);
-//        }
-//
-//        // merge
-//        Stack tmpStack = new Stack();
-//        while (!stackLeft.isEmpty() || !stackRight.isEmpty()) {
-//            if (stackLeft.isEmpty()) {
-//                tmpStack.push(stackRight.pop());
-//            } else if (stackRight.isEmpty()) {
-//                tmpStack.push(stackLeft.pop());
-//                // set an appropriate compare method
-//            } else if (stackLeft.peek().compareTo(stackRight.peek()) >= 0) {
-//                tmpStack.push(stackLeft.pop());
-//            } else {
-//                tmpStack.push(stackRight.pop());
-//            }
-//        }
-//
-//        // reverse stack
-//        while (!tmpStack.isEmpty()) {
-//            input.push(tmpStack.pop());
-//        }
-//
+    // копируем содержимое стека в массив
+    int index = 0;
+    while (!IsEmpty())
+    {
+        T element = Pop();
+        mass[index] = element;
+        index++;
+    }
+
+    
 }
 
 #endif /* Stack_hpp */

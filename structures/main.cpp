@@ -11,35 +11,43 @@
 
 int main(int argc, const char * argv[]) {
     
-    Stack<int> s = Stack<int>();
-//    std::cout << "Пусто? " << s.IsEmpty() << std::endl;
-//    s.Push(1);
-//    s.Push(2);
-//    s.Push(666);
-//    std::cout << s.Pop() << std::endl;
-//    std::cout << "Пусто? " << s.IsEmpty() << std::endl;
-//    s.Show();
-//    std::cout << "\t";
-//    std::cout << s.Size() << std::endl;
-//    //s.Delete(2);
-//    s.Show();
-//    std::cout << "Пусто? " << s.IsEmpty() << std::endl;
-//
-//    s.Clear();
-//    std::cout << "Пусто? " << s.IsEmpty() << std::endl;
+    Stack<int> integer = Stack<int>();
     
-    s.Push(1);
-    s.Push(2);
-    s.Push(3);
-    s.Push(4);
-    s.Push(5);
-    s.Show();
-    s.Sort();
-    //s.Pop();
-    //s.Pop();
-    //s.Show();
+    integer.Push(1);
+    integer.Push(2);
+    integer.Push(3);
+    integer.Push(4);
+    integer.Push(5);
+    integer.Show();
+    integer.Sort(integer);
+    integer.Show();
+    std::cout << "--------------\n";
+    integer.Push(1);
+    integer.Push(-2);
+    integer.Push(3);
+    integer.Push(-4);
+    integer.Push(5);
+    integer.Show();
+    integer.Sort(integer);
+    integer.Show();
+    std::cout << "--------------\n";
     
-
+    Stack<std::string> letters = Stack<std::string>();
+    letters.Push("d");
+    letters.Push("a");
+    letters.Push("n");
+    letters.Push("b");
+    letters.Show();
+    letters.Sort(letters);
+    letters.Show();
+    std::cout << "--------------\n";
+    letters.Push("date");
+    letters.Push("alkoholikerin");
+    letters.Push("nil");
+    letters.Push("bus");
+    letters.Show();
+    letters.Sort(letters);
+    letters.Show();
     
     return 0;
 }

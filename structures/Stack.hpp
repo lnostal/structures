@@ -34,9 +34,10 @@ class Stack
     
         void Push(const T& newElement);
         T Pop();
+        T Peek();
         bool IsEmpty();
         void Show();
-        void Sort();
+        void Sort(Stack<T>& input);
         void Clear();
         int Size();
 };
@@ -87,6 +88,12 @@ T Stack<T>::Pop()
     }
     
     return returnedE;
+}
+
+template <class T>
+T Stack<T>::Peek()
+{
+    return myStack->head->e;
 }
 
 /*!
@@ -142,21 +149,62 @@ int Stack<T>::Size()
 }
 
 template<class T>
-void Stack<T>::Sort()
+void Stack<T>::Sort(Stack<T>& stack)
 {
-    int sizeOfArray = Size();
-    T mass[sizeOfArray];
-    
-    // копируем содержимое стека в массив
-    int index = 0;
-    while (!IsEmpty())
+    if (stack.IsEmpty())
     {
-        T element = Pop();
-        mass[index] = element;
-        index++;
+        return;
     }
-
     
+    Stack<T> leftPart = Stack<T>();
+    Stack<T> rightPart = Stack<T>();
+    
+    // делим стек на две части
+    while (!stack.IsEmpty())
+    {
+        leftPart.Push(stack.Pop());
+        
+        if (!stack.IsEmpty())
+        {
+            rightPart.Push(stack.Pop());
+        }
+    }
+    
+    // проделываем это рекурсивно для каждой из частей
+    if (!leftPart.IsEmpty() && !rightPart.IsEmpty())
+    {
+        Sort(leftPart);
+        Sort(rightPart);
+    }
+    
+    // сливаем части стека
+    Stack tempStack = Stack<T>();
+    while (!leftPart.IsEmpty() || !rightPart.IsEmpty())
+    {
+        if (leftPart.IsEmpty())
+        {
+            tempStack.Push(rightPart.Pop());
+        }
+        else if (rightPart.IsEmpty())
+        {
+            tempStack.Push(leftPart.Pop());
+            // set an appropriate compare method
+        }
+        else if (leftPart.Peek() > rightPart.Peek())
+        {
+            tempStack.Push(leftPart.Pop());
+        }
+        else
+        {
+            tempStack.Push(rightPart.Pop());
+        }
+    }
+    
+    // переворачиваем стек и записываем его в исходный
+    while (!tempStack.IsEmpty())
+    {
+        stack.Push(tempStack.Pop());
+    }
 }
 
 #endif /* Stack_hpp */

@@ -11,6 +11,9 @@
 
 #include <stdio.h>
 #include <math.h>
+#include <iostream>
+#include <sstream>
+#include <string>
 
 template<class T>
 class Stack
@@ -32,14 +35,15 @@ class Stack
         Stack();
         ~Stack();
     
-        void Push(const T& newElement);
         T Pop();
         T Peek();
-        bool IsEmpty();
-        void Show();
-        void Sort(Stack<T>& input);
-        void Clear();
         int Size();
+        void Clear();
+        bool IsEmpty();
+        void Sort(Stack<T>& input);
+        void Push(const T& newElement);
+        void Show(std::string aSeparator);
+        std::string WriteToString(std::string aSeparator);
 };
 
 /*
@@ -62,9 +66,8 @@ Stack<T>::~Stack()
 }
 
 /*!
- \brief Проверка стека на пустоту
+ \brief Проверка стека на наличие в нем элементов
  */
-
 template <class T>
 bool Stack<T>::IsEmpty()
 {
@@ -74,6 +77,10 @@ bool Stack<T>::IsEmpty()
     return false;
 }
 
+/*!
+ \brief Удаляет крайний элемент стека
+ \return <T> Крайний элемент стека
+ */
 template <class T>
 T Stack<T>::Pop()
 {
@@ -90,6 +97,10 @@ T Stack<T>::Pop()
     return returnedE;
 }
 
+/*!
+ \brief Возвращает крайний элемент стека
+ \return <T> Крайний элемент стека
+ */
 template <class T>
 T Stack<T>::Peek()
 {
@@ -111,17 +122,42 @@ void Stack<T>::Push(const T& newElement)
 
 /*!
  \brief Вывод стека на экран
+ \param aSeparator Символ или строка, использующиеся в качестве разделителя между элементами стека
  */
 template<class T>
-void Stack<T>::Show()
+void Stack<T>::Show(std::string aSeparator)
 {
     Element<T> *temp = myStack->head;
     while (temp != NULL)
     {
-        std::cout << temp->e << " ";
+        std::cout << temp->e << aSeparator;
         temp = temp->next;
     }
     std::cout << std::endl;
+}
+
+/*!
+ \brief Записывает стек в строку через разделитель
+ \param aSeparator Символ или строка, использующиеся в качестве разделителя между элементами стека
+ \return string Результирующая строка
+ */
+template<class T>
+std::string Stack<T>::WriteToString(std::string aSeparator)
+{
+    std::ostringstream stream;
+    
+    Element<T> *temp = myStack->head;
+    while (temp != NULL)
+    {
+        stream << temp->e << aSeparator;
+        temp = temp->next;
+    }
+    
+    std::string result;
+    result = stream.str();
+    result.erase(result.length()-1, 1);
+    
+    return result;
 }
 
 /*!
@@ -148,6 +184,10 @@ int Stack<T>::Size()
     return numberOfElements;
 }
 
+/*!
+ \brief Сортировка слиянием (рекурсивная)
+ \param stack Сортируемый стек
+ */
 template<class T>
 void Stack<T>::Sort(Stack<T>& stack)
 {
@@ -188,7 +228,6 @@ void Stack<T>::Sort(Stack<T>& stack)
         else if (rightPart.IsEmpty())
         {
             tempStack.Push(leftPart.Pop());
-            // set an appropriate compare method
         }
         else if (leftPart.Peek() > rightPart.Peek())
         {

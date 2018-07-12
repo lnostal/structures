@@ -24,6 +24,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0D79156C20F8163A0098496A /* StackTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StackTests.h; sourceTree = "<group>"; };
 		0DBC738220DB1C3600AA7F0C /* Stack.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Stack.hpp; sourceTree = "<group>"; };
 		0DF6248920DAFE9D006B8378 /* structures */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = structures; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DF6248C20DAFE9D006B8378 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -59,6 +60,7 @@
 		0DF6248B20DAFE9D006B8378 /* structures */ = {
 			isa = PBXGroup;
 			children = (
+				0D79156C20F8163A0098496A /* StackTests.h */,
 				0DF6248C20DAFE9D006B8378 /* main.cpp */,
 				0DBC738220DB1C3600AA7F0C /* Stack.hpp */,
 			);

@@ -8,46 +8,17 @@
 
 #include <iostream>
 #include "Stack.hpp"
+#include "StackTests.h"
 
-int main(int argc, const char * argv[]) {
+//#define RUN_TESTS
+
+int main(int argc, const char * argv[])
+{
     
-    Stack<int> integer = Stack<int>();
-    
-    integer.Push(1);
-    integer.Push(2);
-    integer.Push(3);
-    integer.Push(4);
-    integer.Push(5);
-    integer.Show();
-    integer.Sort(integer);
-    integer.Show();
-    std::cout << "--------------\n";
-    integer.Push(1);
-    integer.Push(-2);
-    integer.Push(3);
-    integer.Push(-4);
-    integer.Push(5);
-    integer.Show();
-    integer.Sort(integer);
-    integer.Show();
-    std::cout << "--------------\n";
-    
-    Stack<std::string> letters = Stack<std::string>();
-    letters.Push("d");
-    letters.Push("a");
-    letters.Push("n");
-    letters.Push("b");
-    letters.Show();
-    letters.Sort(letters);
-    letters.Show();
-    std::cout << "--------------\n";
-    letters.Push("date");
-    letters.Push("alkoholikerin");
-    letters.Push("nil");
-    letters.Push("bus");
-    letters.Show();
-    letters.Sort(letters);
-    letters.Show();
+#ifdef RUN_TESTS
+    Sort_IntegersSorted_Successfully();
+    Sort_StringsSorted_Successfully();
+#endif
     
     return 0;
 }

@@ -10,7 +10,6 @@
 #define StackTests_h
 
 #include "Stack.hpp"
-#include <iostream>
 
 bool Sort_StringsSorted_Successfully()
 {
@@ -27,20 +26,11 @@ bool Sort_StringsSorted_Successfully()
     letters.Sort(letters);
     
     std::string expectedString = "nil n date d bus b ass alkoholikerin a";
-    std::string resultString = letters.WriteToString(" ");
+    std::string resultString = letters.WriteToString();
+
+    std::cout << "Sort_StringsSorted_Successfully\t\t" << (expectedString == resultString) << std::endl;
     
-    bool successfully = expectedString == resultString;
-   
-    if (successfully)
-    {
-        std::cout << "Sort_StringsSorted_Successfully\t\t[OK]" << std::endl;
-    }
-    else
-    {
-        std::cout << "Sort_StringsSorted_Successfully\t\t[FAIL]" << std::endl;
-    }
-    
-    return successfully;
+    return expectedString == resultString;
 }
 
 bool Sort_IntegersSorted_Successfully()
@@ -60,20 +50,24 @@ bool Sort_IntegersSorted_Successfully()
     integer.Sort(integer);
     
     std::string expectedString = "5 5 4 3 3 2 1 1 -2 -4";
-    std::string resultString = integer.WriteToString(" ");
+    std::string resultString = integer.WriteToString();
     
-    bool successfully = expectedString == resultString;
+    std::cout << "Sort_IntegersSorted_Successfully\t" << (expectedString == resultString) << std::endl;
     
-    if (successfully)
-    {
-        std::cout << "Sort_IntegersSorted_Successfully\t[OK]" << std::endl;
-    }
-    else
-    {
-        std::cout << "Sort_IntegersSorted_Successfully\t[FAIL]" << std::endl;
-    }
+    return expectedString == resultString;
+}
+
+bool IsEmpty_StackNotEmpty_Successfully()
+{
+    Stack<int> stack = Stack<int>();
+    stack.Push(2);
     
-    return successfully;
+    bool expected = false;
+    bool result = stack.IsEmpty();
+    
+    std::cout << "IsEmpty_StackNotEmpty_Successfully\t" << (expected == result) << std::endl;
+    
+    return expected == result;
 }
 
 #endif /* StackTests_h */

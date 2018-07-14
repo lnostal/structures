@@ -10,10 +10,8 @@
 #define Stack_hpp
 
 #include <stdio.h>
-#include <math.h>
 #include <iostream>
 #include <sstream>
-#include <string>
 
 template<class T>
 class Stack
@@ -40,10 +38,10 @@ class Stack
         int Size();
         void Clear();
         bool IsEmpty();
-        void Sort(Stack<T>& input);
+        void Sort(Stack<T>& stack);
         void Push(const T& newElement);
-        void Show(std::string aSeparator);
-        std::string WriteToString(std::string aSeparator);
+        void Show(const std::string& separator = " ");
+        std::string WriteToString(const std::string& separator = " ");
 };
 
 /*
@@ -52,9 +50,8 @@ class Stack
 template<class T>
 Stack<T>::Stack()
 {
-    Element<T> *e = new Element<T>;
-    myStack = e;
-    myStack->head = NULL;
+    myStack = new Element<T>;
+    myStack->head = nullptr;
     numberOfElements = 0;
 }
 
@@ -62,7 +59,7 @@ template<class T>
 Stack<T>::~Stack()
 {
     Clear();
-    myStack = NULL;
+    myStack = nullptr;
 }
 
 /*!
@@ -71,10 +68,7 @@ Stack<T>::~Stack()
 template <class T>
 bool Stack<T>::IsEmpty()
 {
-    if (myStack->head == NULL)
-        return true;
-    
-    return false;
+    return numberOfElements == 0;
 }
 
 /*!
@@ -86,14 +80,10 @@ T Stack<T>::Pop()
 {
     Element<T> *temp = myStack->head;
     T returnedE = temp->e;
-    
-    if (temp != NULL)
-    {
-        myStack->head = temp->next;
-        delete temp;
-        numberOfElements--;
-    }
-    
+    myStack->head = temp->next;
+    delete temp;
+    numberOfElements--;
+
     return returnedE;
 }
 
@@ -122,15 +112,15 @@ void Stack<T>::Push(const T& newElement)
 
 /*!
  \brief Вывод стека на экран
- \param aSeparator Символ или строка, использующиеся в качестве разделителя между элементами стека
+ \param separator Символ или строка, использующиеся в качестве разделителя между элементами стека
  */
 template<class T>
-void Stack<T>::Show(std::string aSeparator)
+void Stack<T>::Show(const std::string& separator)
 {
     Element<T> *temp = myStack->head;
-    while (temp != NULL)
+    while (temp != nullptr)
     {
-        std::cout << temp->e << aSeparator;
+        std::cout << temp->e << separator;
         temp = temp->next;
     }
     std::cout << std::endl;
@@ -138,18 +128,18 @@ void Stack<T>::Show(std::string aSeparator)
 
 /*!
  \brief Записывает стек в строку через разделитель
- \param aSeparator Символ или строка, использующиеся в качестве разделителя между элементами стека
+ \param separator Символ или строка, использующиеся в качестве разделителя между элементами стека
  \return string Результирующая строка
  */
 template<class T>
-std::string Stack<T>::WriteToString(std::string aSeparator)
+std::string Stack<T>::WriteToString(const std::string& separator)
 {
     std::ostringstream stream;
     
     Element<T> *temp = myStack->head;
-    while (temp != NULL)
+    while (temp != nullptr)
     {
-        stream << temp->e << aSeparator;
+        stream << temp->e << separator;
         temp = temp->next;
     }
     
@@ -166,11 +156,10 @@ std::string Stack<T>::WriteToString(std::string aSeparator)
 template<class T>
 void Stack<T>::Clear()
 {
-    while (myStack->head != NULL)
+    while (myStack->head != nullptr)
     {
         Element<T> *temp = myStack->head->next;
-        if (myStack->head != NULL)
-            delete myStack->head;
+        delete myStack->head;
         myStack->head = temp;
     }
 }

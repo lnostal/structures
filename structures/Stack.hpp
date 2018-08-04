@@ -30,7 +30,7 @@ class Stack
         int numberOfElements;
     
     public:
-        Stack();
+        Stack();                                                        
         ~Stack();
     
         T Pop();
@@ -192,7 +192,7 @@ void Stack<T>::Sort(Stack<T>& stack)
     while (!stack.IsEmpty())
     {
         leftPart.Push(stack.Pop());
-        
+
         if (!stack.IsEmpty())
         {
             rightPart.Push(stack.Pop());

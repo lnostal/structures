@@ -12,6 +12,7 @@
 #include "StackTests.h"
 
 #include <chrono>
+#include <thread>
 
 //#define RUN_TESTS
 
@@ -19,7 +20,7 @@ std::string GetTimeForNumberOfElementsEqualTo(int numberOfElements)
 {
     Stack<int> stack = Stack<int>();
     
-    for (int i = 0; i < numberOfElements; i++)
+    for (int i = numberOfElements; i > 0; i--)
     {
         stack.Push(i);
     }
@@ -37,7 +38,7 @@ long GetCountOfOperationsForNumberOfElementsEqualTo(int numberOfElements)
     
     StackWithTimeCount<int> stack = StackWithTimeCount<int>();
     
-    for (int i = 0; i < numberOfElements; i++)
+    for (int i = numberOfElements; i > 0; i--)
     {
         stack.Push(i);
     }

@@ -68,7 +68,7 @@ StackWithTimeCount<T>::StackWithTimeCount()
     myStack = new Element<T>;   // присваивание и выделение памяти: 2 + 2
     myStack->head = nullptr;    // обращение к элементу и присвоение: 1 + 2
     numberOfElements = 0;       // присваивание: 2
-    
+
     operations += 9;
 
 }
@@ -210,18 +210,21 @@ int StackWithTimeCount<T>::Size()
 template<class T>
 void StackWithTimeCount<T>::Sort(StackWithTimeCount<T>& stack)
 {
-    if (stack.IsEmpty())    // обращение к методу: 1
-    {
-        operations += 2;    /// все, что касается методов класса, будет автоматически
-                            /// считаться внутри них, так что их уже не учитываем
+    operations += 1;        // обращение к методу: 1
+    if (stack.IsEmpty())
+    {                       /// все, что касается методов класса, будет автоматически
+        operations += 1;    /// считаться внутри них, так что их уже не учитываем
+        
         return;             // возвращение значения: 1
     }
     
+    
     StackWithTimeCount<T> leftPart = StackWithTimeCount<T>();     // выделение папяти, [конструктор] и присваивание: 2 + 2
     StackWithTimeCount<T> rightPart = StackWithTimeCount<T>();    // выделение папяти, [конструктор] и присваивание: 2 + 2
+    operations += 4;
     
     // делим стек на две части
-    while (!stack.IsEmpty())                // обращение к элементу и логическая операция: 1 + 1
+    while (!stack.IsEmpty())                // обращение к методу и логическая операция: 1 + 1
     {
         leftPart.Push(stack.Pop());         // обращение к методу, обращение к методу: 1 + 1
         
@@ -229,25 +232,30 @@ void StackWithTimeCount<T>::Sort(StackWithTimeCount<T>& stack)
         {
             rightPart.Push(stack.Pop());     // обращение к методу, обращение к методу: 1 + 1
 
-            operations += 4;
+            operations += 2;
         }
 
-        operations += 4;
+        operations += 6;
     }
     
     // проделываем это рекурсивно для каждой из частей
+    
     if (!leftPart.IsEmpty() && !rightPart.IsEmpty())    // логическая операция, обращение к методу, логическая операция
     {                                                   // логическая операция, обращение к методу: 1 + 1 + 1 + 1 + 1
         Sort(leftPart);
         Sort(rightPart);
-
-        operations += 5;
+        
+        operations += 2;                                // вызов методов
     }
+    operations += 5;
     
     // сливаем части стека
     StackWithTimeCount tempStack = StackWithTimeCount<T>(); // выделение памяти, [конструктор] и присваивание: 2 + 2
+    operations += 4;
     while (!leftPart.IsEmpty() || !rightPart.IsEmpty())     // 1 + 1 + 1 + 1 + 1
     {
+        operations += 5;
+        
         if (leftPart.IsEmpty())                             // обращение к методу: 1
         {
             tempStack.Push(rightPart.Pop());                // обращение к методу, обращение к методу: 1 + 1
@@ -258,22 +266,20 @@ void StackWithTimeCount<T>::Sort(StackWithTimeCount<T>& stack)
         {
             tempStack.Push(leftPart.Pop());                 // 1 + 1
 
-            operations += 3;
+            operations += 4;                                // проверка предыдущего if-а: 1
         }
         else if (leftPart.Peek() > rightPart.Peek())        // обращение к методу, обращение к методу, арифметическая операция: 1 + 1 + 2
         {
             tempStack.Push(leftPart.Pop());                 // 1 + 1
 
-            operations += 6;
+            operations += 8;                                // проверка предыдущих if-ов: 1 + 1
         }
         else
         {
             tempStack.Push(rightPart.Pop());
 
-            operations += 2;
+            operations += 6;                                // проверка предыдущих if-ов: 1 + 1 + 4
         }
-        
-        operations += 5;
     }
     
     // переворачиваем стек и записываем его в исходный
@@ -283,8 +289,6 @@ void StackWithTimeCount<T>::Sort(StackWithTimeCount<T>& stack)
 
         operations += 4;
     }
-    
-    operations += 12;
 }
 
  /* StackWithTimeCount_h */

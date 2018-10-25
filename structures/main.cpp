@@ -13,6 +13,7 @@
 
 #include <chrono>
 #include <thread>
+#include <cmath>
 
 //#define RUN_TESTS
 
@@ -29,7 +30,11 @@ std::string GetTimeForNumberOfElementsEqualTo(int numberOfElements)
     stack.Sort(stack);
     auto finish = std::chrono::steady_clock::now();
     
-    return std::to_string(std::chrono::duration_cast<std::chrono::milliseconds>(finish - start).count()) + "ms";
+    auto time = std::chrono::duration_cast<std::chrono::microseconds>(finish - start).count() / 1000.00;
+    char* s_time = new char;
+    std::sprintf(s_time, "%.2lf %s", time, "ms");
+
+    return s_time;
 }
 
 long GetCountOfOperationsForNumberOfElementsEqualTo(int numberOfElements)
